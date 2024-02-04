@@ -1,6 +1,6 @@
-import mysql from "mysql2"
+const mysql = require("mysql2")
 
-export default async function MySQlConnect(){
+async function MySQlConnect(){
     const connection = mysql.createPool({
         uri: "mysql://root:4Bc2CG35D-HD564FAd3cDag2hEEec4Ag@monorail.proxy.rlwy.net:18114/railway"
     })
@@ -8,3 +8,4 @@ export default async function MySQlConnect(){
     return pool
 }
 
+module.exports = MySQlConnect

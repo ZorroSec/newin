@@ -1,6 +1,7 @@
-import app from "./config/config.js";
-import "./routes.js"
-
+// const app = "./config/config.js";
+// const "./routes.js"
+const app = require('./config/config.js')
+require('./routes.js')
 
 app.listen(3000, (err)=>{
     if(err){

@@ -16,6 +16,33 @@
     </head>
 
     <body>
+        <header class="p-3 mb-3 border-bottom">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-secondary text-decoration-none"><h4>NeWin</h4></a>
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="/" class="nav-link px-2 link-secondary">Inicio</a></li>
+                        <li><a href="/api/v1" class="nav-link px-2 link-body-emphasis">Api</a></li>
+                    </ul>
+                    <form action="/" method="post" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
+                    <div class="dropdown text-end">
+                        <a href="" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Conta</a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a href="/{{nome}}" class="dropdown-item">{{nome}}</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a href="/perfil" class="dropdown-item">Perfil</a></li>
+                            <li><a href="/editar/perfil" class="dropdown-item">Editar perfil</a></li>
+                            <li><a href="/logout" class="dropdown-item text-danger">Deslogar</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </header>
         {{{body}}}
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

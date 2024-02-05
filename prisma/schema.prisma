@@ -18,3 +18,12 @@ model User {
   descricao String
   ip String
 }
+
+model Posts {
+  id Int @id @default(autoincrement())
+  nome String
+  titulo String
+  post String
+  fonte String
+  data String
+}

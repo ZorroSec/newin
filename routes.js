@@ -26,7 +26,7 @@ app.get('/', async(req, res)=>{
     const [user, results] = await pool.query(`SELECT * FROM User WHERE ip = '${ip.ip}'`)
     console.log(user)
     if(user){
-        res.render('home', { user: user[0]['nome'] })
+        res.render('home', { nome: user[0]['nome'] })
     }else{
         res.redirect('/login')
     }

@@ -1,0 +1,25 @@
+<header class="p-3 m-3 text-center">
+    <h1>NeWin</h1>
+</header>
+<form action="/login" method="post" class="container">
+    <div class="mb-3">
+        <h2>Login</h2>
+        {{{userInvalid}}}
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email <span class="text-danger">*</span></label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
+        <div id="emailHelp" class="form-text">Não iremos compartilhar seu email com mais, ninguém.</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Senha <span class="text-danger">*</span></label>
+        <input type="password" name="senha" class="form-control" id="exampleInputPassword1" placeholder="Sua senha">
+    </div>
+    <div class="mb-3 justify-content-between d-flex">
+        <a href="/forgot">Recuperar senha</a>
+        <a href="/cadastrar">Cadastrar-se</a>
+    </div>
+    <div class="mb-3 d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </div>
+</form>

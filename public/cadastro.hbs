@@ -1,0 +1,29 @@
+<header class="p-3 m-3 text-center">
+    <h1>NeWin</h1>
+</header>
+<div class="container">
+    <form action="/cadastro" method="post" class="container">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">Nunca compartilharemos seu e-mail com mais ninguém.</div>
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha">
+        </div>
+        <div class="mb-3">
+            <label for="confirmaSenha" class="form-label">Confirmar Senha</label>
+            <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha">
+        </div>
+        <div class="mb-3 d-grid gap-2">
+            <button type="submit" class="btn btn-primary">
+                Cadastrar
+            </button>
+        </div>
+    </form>
+</div>

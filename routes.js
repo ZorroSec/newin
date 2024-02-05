@@ -8,6 +8,7 @@ const { engine } = require("express-handlebars")
 const path = require("path")
 const findUsersWhereEmail = require("./find/findUserEmail.js")
 const updateUserIpWhereEmail = require("./update/updateUser.js")
+const createUser = require("./models/createUser.js")
 
 app.engine('hbs', engine({
     extname: 'hbs',
@@ -65,3 +66,32 @@ app.post('/login', async(req, res)=>{
     }
 })
 
+app.get('/cadastro', async(req, res)=>{
+    const ip = await queryIpFunction()
+    const pool = await MySQlConnect()
+    const [user, results] = await pool.query(`
+    SELECT *
+    FROM User
+    WHERE ip = '${ip.ip}'
+    `)
+    console.log(user)
+    if(user){
+        res.render('cadastro')
+    }else{
+        res.redirect('/login')
+    }
+})
+
+app.post('/cadastro', async(req, res)=>{
+    const { nome, email, senha } = req.body
+    const ip = await queryIpFunction()
+    const pool = await MySQlConnect()
+    const usercreate = await createUser({
+        nome,
+        email,
+        senha,
+        ip: ip.ip
+    })
+    console.log(usercreate)
+    res.redirect('/login')
+})

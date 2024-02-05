@@ -23,12 +23,16 @@ app.use(express.json())
 app.get('/', async(req, res)=>{
     const ip = await queryIpFunction()
     const pool = await MySQlConnect()
-    const [user, results] = await pool.query(`SELECT * FROM User WHERE ip = '${ip.ip}'`)
+    const [user, results] = await pool.query(`SELECT * FROM User WHERE ip = '${ip.query}'`)
     console.log(user)
-    if(user){
-        res.render('home', { nome: user[0]['nome'] })
-    }else{
+    if(user.length < 1){
         res.redirect('/login')
+    }else{
+        const [posts, results] = await pool.query(`
+        SELECT *
+        FROM Posts`)
+        res.render('home', { nome: user[0]['nome'], posts })
+        
     }
 })
 
@@ -41,11 +45,15 @@ app.post('/login', async(req, res)=>{
     // console.log(email, senha)
     const ip = await queryIpFunction()
     const pool = await MySQlConnect()
-    const [user, results] = await findUsersWhereEmail({
-        email,
-        senha
-    })
-    console.log(user)
+    const [user, results] = await pool.query(`
+    SELECT *
+    FROM User
+    WHERE email = '${email}' AND senha = '${senha}'
+    `)
+
+    console.log(user.length)
+    
+
     if(user.length < 1){
         const userInvalid = `
         <div class="alert alert-danger" role="alert">
@@ -58,11 +66,12 @@ app.post('/login', async(req, res)=>{
     }else{
         const [update, results] = await pool.query(`
         UPDATE User
-        SET ip = '${ip.ip}'
+        SET ip = '${ip.query}'
         WHERE email = '${email}' AND senha = '${senha}'
         `)
         console.log(update)
         res.redirect('/')
+        
     }
 })
 
@@ -72,7 +81,7 @@ app.get('/cadastro', async(req, res)=>{
     const [user, results] = await pool.query(`
     SELECT *
     FROM User
-    WHERE ip = '${ip.ip}'
+    WHERE ip = '${ip.query}'
     `)
     console.log(user)
     if(user){
@@ -90,8 +99,24 @@ app.post('/cadastro', async(req, res)=>{
         nome,
         email,
         senha,
-        ip: ip.ip
+        ip: ip.query
     })
     console.log(usercreate)
     res.redirect('/login')
+})
+
+app.get('/publicar', async(req, res)=>{
+    const ip = await queryIpFunction()
+    const pool = await MySQlConnect()
+    const [user, results] = await pool.query(`
+    SELECT *
+    FROM User
+    WHERE ip = '${ip.query}'
+    `)
+    console.log(user)
+    if(user){
+        res.render('publicar')
+    }else{
+        res.redirect('/login')
+    }
 })

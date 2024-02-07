@@ -1,0 +1,22 @@
+<form action="/publicar" method="post" class="container">
+    <h2>Nova publicação</h2>
+    {{{postPublished}}}
+
+    <div class="mb-3">
+        <label for="titulo" class="form-label">Titulo <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="titulo" name="titulo">
+    </div>
+    <div class="mb-3">
+        <label for="post" class="form-label">Corpo da publicação <span class="text-danger">*</span></label>
+        <textarea class="form-control" id="post" name="post" style="height: 170px;"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="fonte" class="form-label">Fonte</label>
+        <input type="url" name="fonte" id="fonte" class="form-control">
+    </div>
+    <div class="d-grid gap-2">
+        <span class="text-muted">Campos marcados por asterisco (<span class="text-danger">*</span>) são obrigatorios </span>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+    <br><br>
+</form>

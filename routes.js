@@ -9,7 +9,9 @@ const path = require("path")
 const findUsersWhereEmail = require("./find/findUserEmail.js")
 const updateUserIpWhereEmail = require("./update/updateUser.js")
 const createUser = require("./models/createUser.js")
-
+const sequelize = require("./db/sequelize.js")
+const { Sequelize } = require("sequelize")
+const Post = require("./post/post.js")
 app.engine('hbs', engine({
     extname: 'hbs',
     defaultLayout: 'main'
@@ -114,9 +116,40 @@ app.get('/publicar', async(req, res)=>{
     WHERE ip = '${ip.query}'
     `)
     console.log(user)
-    if(user){
-        res.render('publicar')
-    }else{
+    if(user.length < 1){
         res.redirect('/login')
+    }else{
+        res.render('publicar')
     }
+})
+
+app.post('/publicar', async(req, res)=>{
+    const ip = await queryIpFunction()
+    const pool = await MySQlConnect()
+    const [user, results] = await pool.query(`
+    SELECT *
+    FROM User
+    WHERE ip = '${ip.query}'
+    `)
+    console.log(user)
+    const { titulo, post, fonte } = req.body
+    const data = new Date()
+    const newPost = await Post.create({
+        nome: user[0]['nome'],
+        titulo,
+        post,
+        fonte,
+        data
+    })
+    const postPublished = `
+    <div class="alert alert-success" role="alert">
+        Olá ${user[0]['nome']}...<br>
+        Seu post foi publicado com sucesso!<br>
+        <a href='/${user[0]['nome']}/conteudos'>Clique aqui para ver seus </a>
+    </div>
+    `
+    res.render('publicar', {
+        postPublished
+    })
+
 })

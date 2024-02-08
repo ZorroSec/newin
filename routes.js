@@ -12,6 +12,7 @@ const createUser = require("./models/createUser.js")
 const sequelize = require("./db/sequelize.js")
 const { Sequelize } = require("sequelize")
 const Post = require("./post/post.js")
+const User = require("./users/user.js")
 app.engine('hbs', engine({
     extname: 'hbs',
     defaultLayout: 'main'
@@ -21,6 +22,40 @@ app.set('views', path.join(__dirname + '/public'));
 
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
+
+app.get('/perfil', async(req, res)=>{
+    const ip = await queryIpFunction()
+    const pool = await MySQlConnect()
+    const [user, results] = await pool.query(`
+    SELECT *
+    FROM User
+    WHERE ip = '${ip.query}'
+    `)
+    console.log(user)
+    if(user.length < 1){
+        res.redirect('/login')
+    }else{
+        res.render('edit', {
+            nome: user[0]['nome'],
+            user
+        })
+    }
+})
+
+app.post('/perfil', async(req, res)=>{
+    const { nome, email, descricao } = req.body
+    const ip = await queryIpFunction()
+    const pool = await MySQlConnect()
+    const [update, result] = await pool.query(`
+    UPDATE User
+    SET nome = '${nome}',
+    email = '${email}',
+    descricao = '${descricao}'
+    WHERE ip = '${ip.query}'
+    `)
+    console.log(update)
+    res.redirect('/perfil')
+})
 
 app.get('/', async(req, res)=>{
     const ip = await queryIpFunction()
@@ -195,3 +230,4 @@ app.get('/:nome', async(req, res)=>{
         })
     }
 })
+

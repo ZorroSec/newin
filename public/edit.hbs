@@ -1,0 +1,28 @@
+<div class="container">
+    {{#each user}}
+        <div class="container">
+            <h2>Editar perfil</h2>
+            <form action="/perfil" class="container" method="post">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="nome" name="nome" value="{{nome}}">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{email}}">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="mb-3">
+                    <label for="descricao" class="form-label">Descricao</label>
+                    <textarea name="descricao" class="form-control" id="descricao" style="height: 170px;">{{descricao}}</textarea>
+                </div>
+                <div class="mb-3">
+                    <small class="text-muted">Campos marcados com asterisco (<span class="text-danger">*</span>) são obrigatorios</small>
+                </div>
+                <div class="mb-3 d-grid gap-2 text-bold">
+                    <button type="submit" class="btn btn-success"><strong>Salvar</strong></button>
+                </div>
+            </form>
+        </div>
+    {{/each}}
+</div>

@@ -176,3 +176,22 @@ app.get('/:nome/conteudos', async(req, res)=>{
 
     }
 })
+
+app.get('/:nome', async(req, res)=>{
+    const nome = req.params.nome
+    const ip = await queryIpFunction()
+    const pool = await MySQlConnect()
+    const [user, results] = await pool.query(`
+    SELECT *
+    FROM User
+    WHERE ip = '${ip.query}'
+    `)
+    if(user.length < 1){
+        res.redirect('/login')
+    }else{
+        res.render('usuario/perfil', {
+            nome,
+            user
+        })
+    }
+})

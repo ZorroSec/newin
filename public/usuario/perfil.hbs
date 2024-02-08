@@ -1,0 +1,33 @@
+<div class="container">
+    <span class="text-muted">
+        <h5>
+            {{nome}}
+        </h5>
+    </span>
+    <hr>
+    <div class="container">
+        {{#each user}}
+            <span class="text-dark">
+                Conta criada em {{createdAt}}
+            </span>
+            <div class="card m-3">
+                <div class="card-body">
+                    <div class="card-text">
+                        {{descricao}}
+                    </div>
+                    <div class="container">
+                        <ul>
+                            <li>
+                                <a href="/{{nome}}/conteudos">Meus conteúdos</a>
+                            </li>
+                            <li>
+                                <a href="/{{nome}}/comentarios">Meus comentários</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        {{/each}}
+    </div>
+</div>

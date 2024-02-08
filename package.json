@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "vercel-build": "npx prisma migrate deploy"
+    "start": "nodemon index.js"
+    
   },
   "keywords": [],
   "author": "",

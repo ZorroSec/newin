@@ -1,0 +1,246 @@
+<div class="container">
+    <h2>
+        Api NeWin
+    </h2>
+    <hr>
+    <ul>
+        <li>
+            <h3>v1</h3>
+            <ul>
+                <li>
+                    <a href="#changelog">Change Log</a>
+                </li>
+                <li>
+                    <a href="#base-url">Base URL</a>
+                </li>
+                <li>
+                    <a href="#publicacoes">Publicações</a>
+                    <ul>
+                        <li>
+                            <a href="#listar-todas-as-publicacoes">Listar todas as publicações</a>
+                        </li>
+                        <li>
+                            <a href="#listar-publicacao-por-id">Listar publicações por id</a>
+                        </li>
+                        <li>
+                            <a href="#listar-apenas-uma-publicacao">Listar apenas uma publicação</a>
+                        </li>
+                        <li>
+                            <a href="#listar-publicacoes-por-username">Listar publicações por username</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#usuarios">Usuarios</a>
+                    <ul>
+                        <li>
+                            <a href="#listar-todas-os-usuarios">Listar todos os usuarios</a>
+                        </li>
+                        <li>
+                            <a href="#listar-usuario-por-id">Listar usuario por id</a>
+                        </li>
+                        <li>
+                            <a href="#listar-usuario-por-nome">Listar usuario por nome</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#comentarios">Comentarios</a>
+                    <ul>
+                        <li>
+                            <a href="#listar-todas-os-comentarios">Listar todos os comentarios</a>
+                        </li>
+                        <li>
+                            <a href="#listar-comentario-por-id">Listar comentario por id</a>
+                        </li>
+                        <li>
+                            <a href="#listar-comentario-por-username">Listar comentario por username</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="container">
+        <div class="container">
+            <h2 id="changelog">Change Log</h2>
+            <hr>
+            <p>
+                <ul>
+                    <li class="container">
+                        <strong>1.0.0</strong> - Inicial Release
+                    </li>
+                </ul>
+            </p>
+        </div>
+        <br>
+        <div class="container">
+            <h2 id="base-url">Base URL</h2>
+            <hr>
+            <p>Todas as URLs incluídas exigem a <code>baseUrl</code></p>
+            <p>
+                <code class="container">
+                    http://localhost:3000
+                </code>
+            </p>
+        </div>
+        <br>
+        <div class="container">
+            <h2 id="publicacoes">Publicações</h2>
+            <hr>
+            <ul>
+                <li id="listar-todas-as-publicacoes">
+                    <h5>Listar todas as publicações</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/publicacoes
+                        </code>
+                        <br>
+                        <span>
+                            Retorna todas as publicações em formato json
+                        </span>
+                        <br>
+                        
+                    </p>
+                </li>
+                <br>
+                <li id="listar-publicacao-por-id">
+                    <h5>Listar publicações por id</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/publicacoes/:id
+                        </code>
+                        
+                        <br>
+                        <span>
+                            Retorna uma publicação em formato json usando seu id como identificação
+                </li>
+                <br>
+                <li id="listar-apenas-uma-publicacao">
+                    <h5>Listar apenas uma publicação</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/publicacoes/:id
+                        </code>
+                        
+                        <br>
+                        <span>
+                            Retorna uma publicação em formato json usando seu id como identificação
+                        </span>
+                    </p>
+                </li>
+                <br>
+                <li id="listar-publicacoes-por-username">
+                    <h5>Listar publicações por username</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/publicacoes/username/:username
+                        </code>
+                        
+                        <br>
+                        <span>
+                            Retorna uma publicação em formato json usando seu username como identificação
+                        </span>
+                    </p>
+                </li>
+                <br>
+            </ul>
+        </div>
+        <div class="container">
+            <h2 id="usuarios">Usuarios</h2>
+            <hr>
+            <ul>
+                <li id="listar-todas-os-usuarios">
+                    <h5>Listar todos os usuarios</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/usuarios
+                        </code>
+                        
+                        <br>
+                        <span>
+                            Retorna todos os usuarios em formato json
+                        </span>
+                    </p>
+                </li>
+                <br>
+                <li id="listar-usuario-por-id">
+                    <h5>Listar usuario por id</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/usuarios/:id
+                        </code>
+                        
+                        <br>
+                        <span>
+                            Retorna um usuario em formato json usando seu id como identificação
+                        </span>
+                    </p>
+                </li>
+                <br>
+                <li id="listar-usuario-por-nome">
+                    <h5>Listar usuario por nome</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/usuarios/nome/:nome
+                        </code>
+                        
+                        <br>
+                        <span>
+                            Retorna um usuario em formato json usando seu nome como identificação
+                        </span>
+                    </p>
+                </li>
+                <br>
+            </ul>
+        </div>
+        <div class="container">
+            <h2 id="comentarios">Comentarios</h2>
+            <hr>
+            <ul>
+                <li id="listar-todas-os-comentarios">
+                    <h5>Listar todos os comentarios</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/comentarios
+                        </code>
+                        
+                        <br>
+                        <span>
+                            Retorna todos os comentarios em formato json
+                        </span>
+                    </p>
+                </li>
+                <br>
+                <li id="listar-comentario-por-id">
+                    <h5>Listar comentario por id</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/comentarios/:id
+                        </code>
+                        
+                        <br>
+                        <span>
+                            Retorna um comentario em formato json usando seu id como identificação
+                        </span>
+                    </p>
+                </li>
+                <li id="listar-comentario-por-username">
+                    <h5>Listar comentario por username</h5>
+                    <p>
+                        <code>
+                            GET http://localhost:3000/comentarios/username/:username
+                        </code>
+                        
+                        <br>
+                        <span>
+                            Retorna um comentario em formato json usando seu username como identificação
+                        </span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

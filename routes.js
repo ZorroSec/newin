@@ -23,6 +23,8 @@ app.set('views', path.join(__dirname + '/public'));
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
+
+
 app.get('/perfil', async(req, res)=>{
     const ip = await queryIpFunction()
     const pool = await MySQlConnect()
@@ -231,3 +233,29 @@ app.get('/:nome', async(req, res)=>{
     }
 })
 
+app.get('/api/v1', async(req, res)=>{
+    const ip = await queryIpFunction()
+    const pool = await MySQlConnect()
+    const [user, results] = await pool.query(`SELECT * FROM User WHERE ip = '${ip.query}'`)
+    console.log(user)
+    if(user.length < 1){
+        // res.json({
+        //     message: "Voce nao pode acessar esta api",
+        //     status: 401,
+        //     access: "/login"
+        // })
+        res.redirect('/login')
+    }else{
+        res.render('api/v1/docs', {
+            nome: user[0]['nome']
+        })
+    }
+})
+
+app.post('/api/v1/test', async(req, res)=>{
+    const { nome } = req.body
+    res.json({
+        nome,
+        status: 200
+    })
+})

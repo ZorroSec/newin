@@ -145,11 +145,34 @@ app.post('/publicar', async(req, res)=>{
     <div class="alert alert-success" role="alert">
         Olá ${user[0]['nome']}...<br>
         Seu post foi publicado com sucesso!<br>
-        <a href='/${user[0]['nome']}/conteudos'>Clique aqui para ver seus </a>
+        <a href='/${user[0]['nome']}/conteudos'>Clique aqui para ver seus posts</a>
     </div>
     `
     res.render('publicar', {
         postPublished
     })
 
+})
+
+app.get('/:nome/conteudos', async(req, res)=>{
+    const nome = req.params.nome
+    const ip = await queryIpFunction()
+    const pool = await MySQlConnect()
+    const [user, results] = await pool.query(`
+    SELECT *
+    FROM User
+    WHERE ip = '${ip.query}'
+    `)
+    console.log(user)
+    if(user.length < 1){
+        res.redirect('/login')
+    }else{
+        const [posts, results] = await pool.query(`
+        SELECT *
+        FROM Posts
+        WHERE nome = '${nome}'
+        `)
+        res.render('usuario/conteudos', { nome, posts })
+
+    }
 })
